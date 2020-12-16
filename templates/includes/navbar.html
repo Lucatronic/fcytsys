@@ -1,0 +1,97 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark py-1">
+
+	<!-- <div class="container mx-0"> -->
+
+	<!-- <a class="navbar-brand text-light" href="/">
+		<div class="navbar-brand-icon rotate-n-15">
+			<i class="fas fa-seedling"></i>
+		</div>
+		<div class="navbar-brand-text mx-3"></div>
+	</a> -->
+
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"
+		aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarsExample04">
+		<!-- <ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link text-light" href="{% url 'inicio' %}">Inicio</a>
+			</li>
+		</ul> -->
+		{% if request.user.is_authenticated %}
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link text-light" href="{% url 'listaAlumno' %}">Alumnos</a>
+			</li>
+		</ul>
+		{% else %}
+
+		{% endif %}
+
+		<ul class="navbar-nav navbar-right">
+
+			{% if request.user.is_authenticated %}
+
+			<!-- <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle text-light" href="#" id="dropdown01" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-network-wired fa-fw"></i>
+					Administración</a>
+
+				<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="dropdown01">
+					<a class="dropdown-item" href="#">Actuadores</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Tipos de Sensores</a>
+				</div>
+			</li> -->
+
+			<div class="navbar-divider d-none d-md-block"></div>
+			<!-- Nav Item - User Information -->
+			<li class="nav-item dropdown no-arrow">
+				<a class="nav-link dropdown-toggle text-light" href="#" id="userDropdown" role="button"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-user fa-fw"></i>
+					<span>Usuario</span>
+				</a>
+				<!-- Dropdown - User Information -->
+				<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+					<a class="dropdown-item" href="#">
+						<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+						Cuenta
+					</a>
+					<a class="dropdown-item" href="#">
+						<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+						Ajustes
+					</a>
+					<!-- <a class="dropdown-item" href="#">
+						<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+						Registro de Actividad
+					</a> -->
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="{% url 'logout' %}">
+						<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+						Salir
+					</a>
+				</div>
+			</li>
+
+
+
+
+			{% else %}
+			<!-- <li class="nav-item">
+				<a class="nav-link text-light" href="#">
+					Registrarme</a></li> -->
+			<li class="nav-item">
+				<a class="nav-link text-light btn btn-primary py-1 mt-1" href="{% url 'login' %}">
+					Entrar</a></li>
+			{% endif %}
+		</ul>
+
+
+
+	</div>
+	<!-- </div> -->
+</nav>
