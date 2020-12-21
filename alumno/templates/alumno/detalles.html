@@ -28,7 +28,23 @@
 	</div>
 </div> -->
 
-<div class='row'>
+
+<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ form|crispy }}
+
+	<div class='row justify-content-center mb-3'>
+		<button type="submit" class="btn btn-success">
+			<i class="fas fa-save"></i> Guardar</button>&nbsp;&nbsp;
+
+		<a href="{% url 'listaAlumno' %}" type="submit" class="btn btn-primary">
+			<i class="fas fa-caret-left"></i> Cancelar</a>
+	</div>
+</form>
+
+
+
+<!-- <div class='row'>
 	<form method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 
@@ -46,7 +62,7 @@
 
 		</div>
 	</form>
-</div>
+</div> -->
 
 
 <p><strong>Título: </strong><br><img id="img" src="" url-href="{% static '/img/titulos/' %}" ci-href="{{alumno.ci}}"
@@ -62,16 +78,23 @@
 		});
 	}
 
+	var institucion_id = $("#id_institucion").children("option:selected").val();
+	var institucion_nombre = $("#id_institucion").children("option:selected").text();
+	
 	$("#id_institucion").attr('readonly', 'true');
 	$("#id_institucion option").remove();
+	$("#id_institucion").append('<option value=' + institucion_id + ' selected>' + institucion_nombre + '</option>');
 	$("#id_institucion").attr('data-toggle', 'modal');
 	$("#id_institucion").attr('data-target', '.bd-modal-lg');
 	$('#id_institucion').css("background-color", "#ffffff");
 
-	function selectHab(id, nro, precio) {
-		//$("#id_id_habitacion_fk").val('Habitación ' + nro);
-		$("#id_institucion").append('<option value=' + id + ' selected>Habitación ' + nro + ' </option>');
+	$("#id_institucion").click(function () {
+		$("#id_institucion option").remove();
+	});
 
+	function selectInst(id, nombre) {
+		console.log(id + " " + nombre);
+		$("#id_institucion").append('<option value=' + id + ' selected>' + nombre + '</option>');
 	}
 
 </script>

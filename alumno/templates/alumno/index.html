@@ -7,10 +7,9 @@
 		<th>Carrera</th>
 		<th>Ingreso</th>
 		<th>Código</th>
-		<th>Apellidos</th>
-		<th>Nombres</th>
+		<th>Nombre</th>
 		<th>CI</th>
-		<th>Acciones</th>
+		<th>Editar</th>
 	</tr>
 </thead>
 
@@ -20,8 +19,7 @@
 		<td>{{ object.carrera }}</td>
 		<td>{{ object.ingreso }}</td>
 		<td>{{ object.codigo }}</td>
-		<td>{{ object.apellidos }}</td>
-		<td>{{ object.nombre }}</td>
+		<td>{{ object.apellidos }}, {{ object.nombre }}</td>
 		<td>{{ object.ci }}</td>
 		<td>
 			<!-- Usaremos un formulario que realizara la tarea de eliminar un registro o postre desde la misma tabla HTML -->
@@ -29,9 +27,9 @@
 				{% csrf_token %} -->
 				<div class="btn-group">
 					<!-- Creamos 3 botones que son ver, Editar y Eliminar, nos sirven para gestionar nuestros registros o postres -->
-					<a href="detalle/{{object.id}}" title="Ver" class="btn btn-success">
-						<i class="far fa-eye"></i></a>
-					<a href="editar/{{object.id}}" title="Editar" class="btn btn-primary">
+					<!-- <a href="detalle/{{object.id}}" title="Ver" class="btn btn-success">
+						<i class="far fa-eye"></i></a> -->
+					<a href="detalle/{{object.id}}" title="Editar" class="btn btn-primary">
 						<i class="far fa-edit"></i></a>
 					<!-- <button class="btn btn-danger" onclick="return eliminar();" title="Eliminar">
 						<i class="far fa-trash-alt"></i></button> -->
