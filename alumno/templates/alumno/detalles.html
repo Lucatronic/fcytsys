@@ -1,0 +1,73 @@
+{% extends "crud/card.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block card %}
+
+{% if messages %}
+<ul class="messages list-group mb-3">
+	{% for message in messages %}
+	<li{% if message.tags %} class="{{ message.tags }} list-group-item list-group-item-primary" {% endif %}>
+		{{ message }}</li>
+		{% endfor %}
+</ul>
+{% endif %}
+
+<p><strong>Nombre y Apellido: </strong>{{alumno.nombre}} {{alumno.apellidos}}</p>
+<p><strong>C.I. Nro.: </strong>{{alumno.ci}}</p>
+<p><strong>Código de Alumno: </strong>{{alumno.codigo}}</p>
+<p><strong>Año de Ingreso: </strong>{{alumno.ingreso}}</p>
+<p><strong>Carrera: </strong>{{alumno.carrera}}</p>
+<!-- <div class='row'>
+	<div class='col-sm-6 col-sm-offset-3'>
+		<p><strong>Institución de Procedencia: </strong>{{alumno.institucion}}</p>
+	</div>
+	<div align="right" class='col-sm-6 mb-0'>
+		<a href="#" class="btn btn-primary" data-toggle="modal" data-target=".bd-modal-lg">
+			<i class="fas fa-edit"></i> Modificar</a>
+	</div>
+</div> -->
+
+<div class='row'>
+	<form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+
+		<div class='col-sm-6 col-sm-offset-3'>
+			{{ form|crispy }}
+		</div>
+		<div align="right" class='col-sm-6 mb-0'>
+			<div class='row'>
+				<button type="submit" class="btn btn-success">
+					<i class="fas fa-save"></i> Guardar</button>&nbsp;&nbsp;
+
+				<a href="{% url 'listaAlumno' %}" type="submit" class="btn btn-primary">
+					<i class="fas fa-caret-left"></i> Cancelar</a>
+			</div>
+
+		</div>
+	</form>
+</div>
+
+
+<p><strong>Título: </strong><br><img id="img" src="" url-href="{% static '/img/titulos/' %}" ci-href="{{alumno.ci}}"
+		class="img-fluid"></p>
+
+{% include "include/modal_instituciones.html" %}
+
+<script type="text/javascript">
+	window.onload = function () {
+		$(function () {
+			const img_src = $('#img').attr('url-href') + $('#img').attr('ci-href') + ".jpg";
+			$("#img").attr("src", img_src);
+		});
+	}
+
+	$("#id_institucion").attr('readonly', 'true');
+	$("#id_institucion option").remove();
+	$("#id_institucion").attr('data-toggle', 'modal');
+	$("#id_institucion").attr('data-target', '.bd-modal-lg');
+	$('#id_institucion').css("background-color", "#ffffff");
+
+</script>
+
+{% endblock %}
