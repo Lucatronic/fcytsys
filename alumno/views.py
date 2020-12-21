@@ -7,7 +7,6 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 # Create your views here.
 from .models import Alumno, Institucion
-from .forms import AlumnoForm
 
 
 #========================== ALUMNO =======================================

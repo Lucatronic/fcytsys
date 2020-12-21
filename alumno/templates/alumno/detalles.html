@@ -68,6 +68,12 @@
 	$("#id_institucion").attr('data-target', '.bd-modal-lg');
 	$('#id_institucion').css("background-color", "#ffffff");
 
+	function selectHab(id, nro, precio) {
+		//$("#id_id_habitacion_fk").val('Habitación ' + nro);
+		$("#id_institucion").append('<option value=' + id + ' selected>Habitación ' + nro + ' </option>');
+
+	}
+
 </script>
 
 {% endblock %}
